@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Вход</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Войти</button>
+  </form>
+  <div class="auth-links">
+    <a href="{% url 'login_page' %}">Регистрация</a> |
+{#    <a href="{% url 'password_reset' %}">Забыли пароль?</a>#}
+  </div>
+  {% if form.errors %}
+    <p class="error-message">Неверное имя пользователя или пароль.</p>
+  {% endif %}
+</div>
+
+</body>
+</html>
